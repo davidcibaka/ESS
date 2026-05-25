@@ -1,11 +1,104 @@
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier site</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Le Bistrot d'Or — Restaurant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
+    <header class="container header">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;">
+            <div>
+                <h1 class="section-title">Le Bistrot d'Or</h1>
+                <p class="subtitle">Cuisine de saison — produits locaux, vins soigneusement choisis</p>
+            </div>
+            <nav aria-label="Navigation principale">
+                <a class="badge" href="#menu">Menu</a>
+                <a class="badge" href="#about" style="margin-left:0.6rem">À propos</a>
+                <a class="badge" href="#contact" style="margin-left:0.6rem">Contact</a>
+            </nav>
+        </div>
+        <div style="margin-top:1.4rem;display:flex;gap:1rem;align-items:center;">
+            <p style="margin:0;color:var(--text-muted)">Ouvert du mardi au dimanche — 12:00–14:30 & 19:00–22:30</p>
+            <a href="#reservation" class="primary" style="margin-left:auto">Réserver</a>
+        </div>
+    </header>
+
+    <main class="container" style="margin-top:1.6rem;display:grid;grid-template-columns:1fr 360px;gap:1.4rem;align-items:start;">
+        <section>
+            <article class="card">
+                <h2 class="section-title">Notre philosophie</h2>
+                <p class="subtitle">Simplicité, produits vrais, et saveurs de saison. Notre chef travaille quotidiennement avec des producteurs locaux pour construire un menu qui suit la nature.</p>
+            </article>
+
+            <section id="menu" style="margin-top:1.2rem">
+                <h3 class="section-title">Le Menu</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;">
+                    <div class="card">
+                        <h4 style="margin:0 0 0.6rem">Entrées</h4>
+                        <p style="margin:0.2rem 0"><strong>Velouté de potimarron</strong> — espuma à la sauge · 8€</p>
+                        <p style="margin:0.2rem 0"><strong>Tartare de saumon</strong> — agrumes et câpres · 12€</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="margin:0 0 0.6rem">Plats</h4>
+                        <p style="margin:0.2rem 0"><strong>Filet de dorade</strong> — purée fumée, légumes rôtis · 18€</p>
+                        <p style="margin:0.2rem 0"><strong>Confit de canard</strong> — pommes de terre sarladaises · 20€</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 style="margin:0 0 0.6rem">Desserts</h4>
+                        <p style="margin:0.2rem 0"><strong>Tartelette citron meringuée</strong> — crème légère · 7€</p>
+                        <p style="margin:0.2rem 0"><strong>Fondant chocolat</strong> — glace vanille · 8€</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" style="margin-top:1.4rem">
+                <div class="card">
+                    <h3 class="section-title">À propos</h3>
+                    <p class="subtitle">Depuis 2015, Le Bistrot d'Or célèbre les saisons avec une carte courte et soignée. Table d'hôte et menus dégustation disponibles sur réservation.</p>
+                </div>
+            </section>
+        </section>
+
+        <aside>
+            <div class="card">
+                <h4 style="margin-top:0">Réservation rapide</h4>
+                <form id="reservation" action="#" method="post" style="display:grid;gap:0.8rem;margin-top:0.6rem">
+                    <label>Nom
+                        <input type="text" name="name" placeholder="Votre nom" required>
+                    </label>
+                    <label>Téléphone
+                        <input type="tel" name="phone" placeholder="0612345678" required>
+                    </label>
+                    <label>Date & heure
+                        <input type="datetime-local" name="datetime" required>
+                    </label>
+                    <label>Couvert(s)
+                        <input type="number" name="covers" min="1" max="20" value="2" required>
+                    </label>
+                    <button type="submit" class="primary">Envoyer la demande</button>
+                </form>
+            </div>
+
+            <div class="card" style="margin-top:1rem">
+                <h4 style="margin-top:0">Contact</h4>
+                <p class="subtitle" style="margin:0.4rem 0">12 rue des Saveurs<br>75000 Paris</p>
+                <p style="margin:0.4rem 0">Téléphone: <a href="tel:+33123456789">01 23 45 67 89</a></p>
+                <p style="margin:0.4rem 0">Email: <a href="mailto:contact@lebistrotdor.fr">contact@lebistrotdor.fr</a></p>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="container footer" style="margin-top:1.6rem;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;">
+        <p style="margin:0;color:var(--text-muted)">© Le Bistrot d'Or — Tous droits réservés</p>
+        <nav>
+            <a href="#menu" class="badge">Voir le menu</a>
+        </nav>
+    </footer>
+
 </body>
 </html>
