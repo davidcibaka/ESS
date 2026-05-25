@@ -1,0 +1,165 @@
+n:root {
+  --bg: #11120f;
+  --surface: #181b16;
+  --surface-strong: #1f241d;
+  --text: #ece7d8;
+  --text-muted: #b8ad9b;
+  --accent: #d8b45a;
+  --accent-soft: #ccaf5f;
+  --border: rgba(216, 180, 90, 0.18);
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, rgba(216, 180, 90, 0.12), transparent 30%),
+              linear-gradient(180deg, #121612 0%, #0d100c 100%);
+  color: var(--text);
+}
+
+body {
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #f0d478;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.header,
+.card,
+.footer {
+  background: linear-gradient(180deg, rgba(255, 220, 130, 0.05), rgba(0, 0, 0, 0.18));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 24px;
+}
+
+.header {
+  padding: 2rem;
+}
+
+.card {
+  padding: 1.8rem;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.9rem, 2.3vw, 3rem);
+  color: #fff7d6;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+button.primary {
+  background: linear-gradient(135deg, #d6b65a, #c99f4d);
+  color: #11120f;
+  border: none;
+  padding: 0.95rem 1.8rem;
+  border-radius: 999px;
+  box-shadow: 0 20px 35px rgba(214, 180, 90, 0.22);
+}
+
+button.primary:hover,
+button.primary:focus {
+  background: linear-gradient(135deg, #f0d478, #c6a03c);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  padding: 0.95rem 1rem;
+  border-radius: 16px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid rgba(216, 180, 90, 0.45);
+  outline-offset: 2px;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 2rem 0;
+}
+
+blockquote {
+  margin: 1.6rem 0;
+  padding: 1.4rem 1.6rem;
+  border-left: 4px solid var(--accent);
+  background: rgba(216, 180, 90, 0.06);
+  color: var(--text);
+}
+
+code,
+pre {
+  font-family: "Fira Code", "Courier New", monospace;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8efcf;
+}
+
+pre {
+  padding: 1.2rem;
+  border-radius: 18px;
+  overflow-x: auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(216, 180, 90, 0.16);
+  color: var(--text);
+  border: 1px solid rgba(216, 180, 90, 0.22);
+}
