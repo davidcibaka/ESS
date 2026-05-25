@@ -179,6 +179,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -20% 0px',
+    threshold: 0.15,
+  });
+
+  document.querySelectorAll('.reveal-section').forEach((section) => {
+    revealObserver.observe(section);
+  });
 });
 
 function showToast(message, type = 'info') {
