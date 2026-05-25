@@ -34,6 +34,7 @@ function ensureTables() {
       datetime TEXT NOT NULL,
       covers INTEGER NOT NULL,
       table_number INTEGER NOT NULL,
+      dish_name TEXT,
       created_at TEXT NOT NULL
     )`);
 
@@ -51,6 +52,15 @@ function ensureTables() {
       created_at TEXT NOT NULL,
       status TEXT NOT NULL
     )`);
+
+    db.all('PRAGMA table_info(reservations)', (err, columns) => {
+      if (!err && Array.isArray(columns)) {
+        const dishColumn = columns.find((col) => col.name === 'dish_name');
+        if (!dishColumn) {
+          db.run('ALTER TABLE reservations ADD COLUMN dish_name TEXT');
+        }
+      }
+    });
   });
 }
 
@@ -85,7 +95,7 @@ app.get('/api/availability', (req, res) => {
 });
 
 app.post('/api/reservations', (req, res) => {
-  const { name, phone, datetime, covers } = req.body;
+  const { name, phone, datetime, covers, dishName } = req.body;
   const startMs = parseDate(datetime);
   const coversCount = Number(covers) || 1;
 
@@ -121,8 +131,8 @@ app.post('/api/reservations', (req, res) => {
 
       const createdAt = new Date().toISOString();
       db.run(
-        'INSERT INTO reservations (name, phone, datetime, covers, table_number, created_at) VALUES (?, ?, ?, ?, ?, ?)',
-        [name, phone, new Date(startMs).toISOString(), coversCount, tableNumber, createdAt],
+        'INSERT INTO reservations (name, phone, datetime, covers, table_number, dish_name, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [name, phone, new Date(startMs).toISOString(), coversCount, tableNumber, dishName || null, createdAt],
         function (insertErr) {
           if (insertErr) {
             return res.status(500).json({ error: 'Impossible de créer la réservation.' });
@@ -189,12 +199,20 @@ app.get('/api/admin/summary', (req, res) => {
             (err4, orders) => {
               if (err4) return res.status(500).json({ error: 'Erreur en base.' });
 
-              res.json({
-                totalSubscribers: subs.totalSubscribers,
-                totalReservations: resCount.totalReservations,
-                pendingOrders: ordersCount.pendingOrders,
-                kitchenOrders: orders,
-              });
+              db.all(
+                'SELECT id, name, datetime, covers, table_number, dish_name FROM reservations ORDER BY created_at DESC LIMIT 10',
+                (err5, reservations) => {
+                  if (err5) return res.status(500).json({ error: 'Erreur en base.' });
+
+                  res.json({
+                    totalSubscribers: subs.totalSubscribers,
+                    totalReservations: resCount.totalReservations,
+                    pendingOrders: ordersCount.pendingOrders,
+                    kitchenOrders: orders,
+                    recentReservations: reservations,
+                  });
+                }
+              );
             }
           );
         });

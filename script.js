@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch('/api/reservations', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, phone, datetime, covers }),
+          body: JSON.stringify({ name, phone, datetime, covers, dishName: selectedDishInput ? selectedDishInput.value : '' }),
         });
         const result = await response.json();
 
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(`Réservation confirmée. Table ${result.tableNumber} réservée.`, 'success');
         reservationForm.reset();
         if (availabilityStatus) availabilityStatus.textContent = '';
+        setSelectedDish('');
       } catch (error) {
         showToast('Erreur de connexion au serveur.', 'error');
       }
@@ -64,6 +65,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  const selectedDishInput = document.getElementById('selected-dish');
+  const selectedDishLabel = document.getElementById('selected-dish-label');
+  const galleryToggle = document.getElementById('gallery-toggle');
+  const foodGrid = document.querySelector('.food-grid');
+
+  const setSelectedDish = (dishName) => {
+    if (selectedDishInput) selectedDishInput.value = dishName || '';
+    if (selectedDishLabel) {
+      selectedDishLabel.textContent = dishName
+        ? `Plat sélectionné pour réservation : ${dishName}`
+        : '';
+    }
+  };
+
+  if (galleryToggle && foodGrid) {
+    galleryToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      foodGrid.classList.toggle('collapsed');
+      galleryToggle.textContent = foodGrid.classList.contains('collapsed')
+        ? 'Voir plus des recettes'
+        : 'Masquer';
+    });
+  }
+
+  document.querySelectorAll('.dish-card[data-dish]').forEach((card) => {
+    card.addEventListener('click', () => {
+      const dishName = card.dataset.dish;
+      setSelectedDish(dishName);
+      showToast(`Vous pouvez réserver : ${dishName}`, 'success');
+      const reservationSection = document.getElementById('reservation');
+      if (reservationSection) {
+        reservationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 
   if (subscribeForm) {
     subscribeForm.addEventListener('submit', async (e) => {
@@ -100,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.menu-action').forEach((button) => {
     button.addEventListener('click', async (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const dishName = button.dataset.dish;
       const details = button.dataset.details;
       const price = button.dataset.price;

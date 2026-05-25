@@ -129,6 +129,10 @@ button {
   justify-items: center;
 }
 
+.food-grid.collapsed {
+  display: none;
+}
+
 @media (max-width: 1180px) {
   .food-grid {
     grid-template-columns: repeat(3, minmax(220px, 1fr));
@@ -157,6 +161,7 @@ button {
   overflow: hidden;
   box-shadow: inset 0 0 0 1px rgba(255, 196, 110, 0.10);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
 }
 
 .dish-card:hover {
