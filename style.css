@@ -279,6 +279,37 @@ button {
   box-shadow: 0 16px 30px rgba(255, 170, 72, 0.18);
 }
 
+.reservation-form,
+.subscribe-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+#availability-status {
+  font-size: 0.95rem;
+  color: #ffe4b5;
+}
+
+.subscribe-form input {
+  width: 100%;
+  min-height: 46px;
+}
+
+.subscribe-card {
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 190, 110, 0.18);
+}
+
+.contact-links {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.contact-links a {
+  color: var(--accent);
+}
+
 @media (max-width: 1180px) {
   .menu-grid {
     grid-template-columns: repeat(2, minmax(210px, 1fr));

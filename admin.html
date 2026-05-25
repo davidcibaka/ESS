@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Le Bistrot d'Or</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="container header">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+      <div>
+        <h1 class="section-title">Espace Admin</h1>
+        <p class="subtitle">Vue d'ensemble des abonnés, réservations et notifications de cuisine.</p>
+      </div>
+      <nav aria-label="Navigation admin">
+        <a class="badge" href="index.html">Retour au site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content-flow">
+    <section class="card">
+      <h3 class="section-title">Statistiques globales</h3>
+      <div id="admin-summary"></div>
+    </section>
+
+    <section class="card">
+      <h3 class="section-title">Commandes en cuisine</h3>
+      <div id="orders-list"></div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -15,9 +15,10 @@
                 <p class="subtitle">Cuisine de saison — produits locaux, vins soigneusement choisis</p>
             </div>
             <nav aria-label="Navigation principale">
-                <a class="badge" href="#menu">Menu</a>
-                <a class="badge" href="#about" style="margin-left:0.6rem">À propos</a>
-                <a class="badge" href="#contact" style="margin-left:0.6rem">Contact</a>
+                <a class="badge" href="#gallery">Recettes</a>
+                <a class="badge" href="#menu" style="margin-left:0.6rem">Menu</a>
+                <a class="badge" href="#reservation" style="margin-left:0.6rem">Réservation</a>
+                <a class="badge" href="admin.html" style="margin-left:0.6rem" target="_blank">Admin</a>
             </nav>
         </div>
         <div style="margin-top:1.4rem;display:flex;gap:1rem;align-items:center;">
@@ -123,7 +124,7 @@
                         </div>
                         <div>
                             <p class="dish-price">8€</p>
-                            <a class="menu-action" href="#reservation">Réserver</a>
+                            <a class="menu-action" href="#" data-dish="Velouté de potimarron" data-details="Espuma à la sauge, noisettes torréfiées et huile de truffe" data-price="8">Commander</a>
                         </div>
                     </article>
 
@@ -134,7 +135,7 @@
                         </div>
                         <div>
                             <p class="dish-price">12€</p>
-                            <a class="menu-action" href="#reservation">Réserver</a>
+                            <a class="menu-action" href="#" data-dish="Tartare de saumon" data-details="Agrumes, câpres, herbes fraîches et croustillant maison" data-price="12">Commander</a>
                         </div>
                     </article>
 
@@ -145,7 +146,7 @@
                         </div>
                         <div>
                             <p class="dish-price">18€</p>
-                            <a class="menu-action" href="#reservation">Réserver</a>
+                            <a class="menu-action" href="#" data-dish="Filet de dorade" data-details="Purée fumée, légumes rôtis et beurre citronné" data-price="18">Commander</a>
                         </div>
                     </article>
 
@@ -156,7 +157,7 @@
                         </div>
                         <div>
                             <p class="dish-price">20€</p>
-                            <a class="menu-action" href="#reservation">Réserver</a>
+                            <a class="menu-action" href="#" data-dish="Confit de canard" data-details="Pommes de terre sarladaises, légumes glacés et jus corsé" data-price="20">Commander</a>
                         </div>
                     </article>
 
@@ -167,7 +168,7 @@
                         </div>
                         <div>
                             <p class="dish-price">7€</p>
-                            <a class="menu-action" href="#reservation">Réserver</a>
+                            <a class="menu-action" href="#" data-dish="Tartelette citron meringuée" data-details="Crème légère, meringue dorée et zeste de citron" data-price="7">Commander</a>
                         </div>
                     </article>
 
@@ -178,7 +179,7 @@
                         </div>
                         <div>
                             <p class="dish-price">8€</p>
-                            <a class="menu-action" href="#reservation">Réserver</a>
+                            <a class="menu-action" href="#" data-dish="Fondant chocolat" data-details="Glace vanille, éclats de noisettes et cœur coulant" data-price="8">Commander</a>
                         </div>
                     </article>
                 </div>
@@ -187,7 +188,7 @@
 
         <section id="reservation" class="card reservation-section">
             <h3 class="section-title">Réservation rapide</h3>
-            <form action="#" method="post" class="reservation-form">
+            <form action="#" method="post" id="reservation" class="reservation-form">
                 <label>Nom
                     <input type="text" name="name" placeholder="Votre nom" required>
                 </label>
@@ -197,6 +198,7 @@
                 <label>Date & heure
                     <input type="datetime-local" name="datetime" required>
                 </label>
+                <p id="availability-status" class="subtitle" style="margin:0.35rem 0 0 0"></p>
                 <label>Couvert(s)
                     <input type="number" name="covers" min="1" max="20" value="2" required>
                 </label>
@@ -211,6 +213,14 @@
                 <a href="tel:+33123456789">01 23 45 67 89</a>
                 <a href="mailto:contact@lebistrotdor.fr">contact@lebistrotdor.fr</a>
             </div>
+            <div class="subscribe-card" style="margin-top:1.2rem;">
+                <h4 style="margin:0 0 0.8rem">Abonnez-vous</h4>
+                <p class="subtitle">Recevez nos nouveautés, offres spéciales et menus réservés.</p>
+                <form id="subscribe-form" class="subscribe-form">
+                    <input type="email" name="email" placeholder="Votre email" required>
+                    <button type="submit" class="primary">S'abonner</button>
+                </form>
+            </div>
         </section>
 
         <section id="about" class="card about-section">
@@ -219,6 +229,7 @@
         </section>
 
     </main>
+    <script src="script.js"></script>
 
     <footer class="container footer" style="margin-top:1.6rem;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;">
         <p style="margin:0;color:var(--text-muted)">© Le Bistrot d'Or — Tous droits réservés</p>
